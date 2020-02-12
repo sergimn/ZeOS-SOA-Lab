@@ -1,0 +1,14 @@
+*.o
+*.s
+*.out
+*.xls
+*.txt
+zeos.bin
+build
+bootsect
+system
+user
+*.swp
+cmake*
+make_*
+.idea
