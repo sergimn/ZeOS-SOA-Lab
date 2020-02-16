@@ -99,6 +99,7 @@ int __attribute__((__section__(".text.main")))
 
 
   printk("Entering user mode...");
+  printk ("\n\n\n\n\n\n\n\n\n\n\n\n\n\n"); // Proof that the scrolling actually works
 
   enable_int();
   /*
