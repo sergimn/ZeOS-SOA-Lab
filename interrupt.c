@@ -85,8 +85,7 @@ void setIdt()
   set_handlers();
 
   /* ADD INITIALIZATION CODE FOR INTERRUPT VECTOR */
-  setInterruptHandler (33, keyboard_handler, 0); // Function keyboard_handler does not exist yet
-                                                 // We will add it in entry.S
+  setInterruptHandler (33, keyboard_handler, 0);
 
   set_idt_reg(&idtR);
 }
