@@ -86,7 +86,7 @@ ENTRY(syscall_handler_sysenter) //Code provided by the Lab guide
 	SAVE_ALL
 	cmpl $0, %EAX
 	jl sysenter_err
-	cmpl $5, %EAX           # This value is MAX_SYSCALL (at this time). Will be replaced later
+	cmpl $MAX_SYSCALL, %EAX
 	jg sysenter_err
 	call *sys_call_table(, %EAX, 0x04)
 	jmp sysenter_fin
