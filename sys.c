@@ -13,13 +13,15 @@
 
 #include <sched.h>
 
+#include <errno.h>
+
 #define LECTURA 0
 #define ESCRIPTURA 1
 
 int check_fd(int fd, int permissions)
 {
-  if (fd!=1) return -9; /*EBADF*/
-  if (permissions!=ESCRIPTURA) return -13; /*EACCES*/
+  if (fd!=1) return -EBADF;
+  if (permissions!=ESCRIPTURA) return -EACCES;
   return 0;
 }
 
@@ -57,8 +59,8 @@ int sys_write(int fd, char * buffer, int size)
 {
   int is_fd_error=check_fd(fd, ESCRIPTURA);
   if (is_fd_error) return is_fd_error;
-  if (buffer==NULL) return -14;  //This value is EFAULT. Will be replaced later
-  if (size<0) return -22;        //This value is EINVAL. Will be replaced later
+  if (buffer==NULL) return -EFAULT;
+  if (size<0) return -EINVAL;
 
   int bytes_left=size;
   int ret;
