@@ -108,3 +108,7 @@ void keyboard_routine(){
     printc_xy (60, 5, c_to_print);
   }
 }
+
+void clock_routine(){
+  zeos_show_clock();
+}
