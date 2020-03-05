@@ -75,6 +75,8 @@ void setTrapHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
   idt[vector].highOffset      = highWord((DWord)handler);
 }
 
+void syscall_handler_sysenter();
+void write_msr(unsigned long msr, unsigned long value);
 
 void setIdt()
 {
@@ -86,6 +88,10 @@ void setIdt()
 
   /* ADD INITIALIZATION CODE FOR INTERRUPT VECTOR */
   setInterruptHandler (33, keyboard_handler, 0);
+
+  write_msr(0x174, __KERNEL_CS);
+  write_msr(0x175, INITIAL_ESP);
+  write_msr(0x176, (unsigned long)syscall_handler_sysenter);
 
   set_idt_reg(&idtR);
 }
