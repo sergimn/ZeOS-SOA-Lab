@@ -13,6 +13,7 @@ Gate idt[IDT_ENTRIES];
 Register    idtR;
 
 void keyboard_handler();
+void clock_handler();
 
 char char_map[] =
 {
@@ -87,6 +88,8 @@ void setIdt()
   set_handlers();
 
   /* ADD INITIALIZATION CODE FOR INTERRUPT VECTOR */
+  setInterruptHandler (32, clock_handler, 0); // Function clock_handler does not exist yet
+                                              // We will add it in entry.S
   setInterruptHandler (33, keyboard_handler, 0);
 
   write_msr(0x174, __KERNEL_CS);
