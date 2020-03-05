@@ -17,6 +17,13 @@ ENTRY(write)
     sysenter
 
 write_return:
+    cmpl $0x0, %eax
+    jg write_continue
+    neg %eax
+    mov %eax, errno
+    mov $-1, %eax
+
+write_continue:
     popl %ebp
     add $0x4, %esp # Handles the return addres in the stack. We could use a 'pop' instruction too
     popl %edx

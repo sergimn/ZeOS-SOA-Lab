@@ -4,6 +4,7 @@
 
 #include <asm.h>
 #include <segment.h>
+#include <errno.h>
 
 
 /**************************************************/
@@ -91,7 +92,7 @@ ENTRY(syscall_handler_sysenter) //Code provided by the Lab guide
 	call *sys_call_table(, %EAX, 0x04)
 	jmp sysenter_fin
 sysenter_err:
-	movl $-38, %EAX         # This is is ENOSYS. Will be replaced later
+	movl $-ENOSYS, %EAX
 sysenter_fin:
 	movl %EAX, 0x18(%ESP)
 	RESTORE_ALL
