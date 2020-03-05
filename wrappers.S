@@ -54,4 +54,7 @@ gettime_return:
 gettime_continue:
     popl %ebp
     add $0x4, %esp # Handles the return addres in the stack. We could use a 'pop' instruction too
+    popl %edx
+    popl %ecx
+    popl %ebp
     ret
