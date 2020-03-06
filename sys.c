@@ -76,3 +76,10 @@ int sys_write(int fd, char * buffer, int size)
   return size-bytes_left;
 
 }
+
+extern int zeos_ticks;
+
+int sys_gettime()
+{
+  return zeos_ticks;
+}

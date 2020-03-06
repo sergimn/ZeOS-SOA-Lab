@@ -109,6 +109,9 @@ void keyboard_routine(){
   }
 }
 
+int zeos_ticks = 0;
+
 void clock_routine(){
   zeos_show_clock();
+  zeos_ticks++;
 }
