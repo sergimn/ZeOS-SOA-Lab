@@ -27,6 +27,8 @@ union task_union {
 
 extern union task_union task[NR_TASKS]; /* Vector de tasques */
 
+extern struct list_head freequeue;
+
 
 #define KERNEL_ESP(t)       	(DWord) &(t)->stack[KERNEL_STACK_SIZE]
 
@@ -38,6 +40,8 @@ void init_task1(void);
 void init_idle(void);
 
 void init_sched(void);
+
+void init_freequeue();
 
 struct task_struct * current();
 

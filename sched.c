@@ -62,10 +62,20 @@ void init_task1(void)
 {
 }
 
+struct list_head freequeue;
 
 void init_sched()
 {
+  init_freequeue();
+}
 
+void init_freequeue()
+{
+  INIT_LIST_HEAD(&freequeue);
+    for (int i = 0; i < NR_TASKS; ++i)
+    {
+      list_add_tail(&task[i].task.list, &freequeue);
+    }
 }
 
 struct task_struct* current()
