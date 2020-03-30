@@ -67,6 +67,7 @@ struct list_head freequeue;
 void init_sched()
 {
   init_freequeue();
+  INIT_LIST_HEAD(&readyqueue);
 }
 
 void init_freequeue()
